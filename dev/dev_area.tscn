@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cotirexgyjo16"]
+
+[ext_resource type="Texture2D" uid="uid://dad6g8gvx6ih7" path="res://icon.svg" id="1_pfkvt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_j1wvb"]
+size = Vector3(50, 0.1, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b7c53"]
+albedo_texture = ExtResource("1_pfkvt")
+uv1_triplanar = true
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lm5ow"]
+data = PackedVector3Array(-25, 0.05, 25, 25, 0.05, 25, -25, -0.05, 25, 25, 0.05, 25, 25, -0.05, 25, -25, -0.05, 25, 25, 0.05, -25, -25, 0.05, -25, 25, -0.05, -25, -25, 0.05, -25, -25, -0.05, -25, 25, -0.05, -25, 25, 0.05, 25, 25, 0.05, -25, 25, -0.05, 25, 25, 0.05, -25, 25, -0.05, -25, 25, -0.05, 25, -25, 0.05, -25, -25, 0.05, 25, -25, -0.05, -25, -25, 0.05, 25, -25, -0.05, 25, -25, -0.05, -25, 25, 0.05, 25, -25, 0.05, 25, 25, 0.05, -25, -25, 0.05, 25, -25, 0.05, -25, 25, 0.05, -25, -25, -0.05, 25, 25, -0.05, 25, -25, -0.05, -25, 25, -0.05, 25, 25, -0.05, -25, -25, -0.05, -25)
+
+[node name="dev_area" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_j1wvb")
+surface_material_override/0 = SubResource("StandardMaterial3D_b7c53")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_lm5ow")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.952406, 0.304831, 0, -0.304831, 0.952406, 0, 15.8067, 0)
+shadow_enabled = true
