@@ -1,0 +1,8 @@
+# Godot 4+ specific ignores
+.godot/
+*.import
+*.import/
+*.blend
+*.blend[0-9]
+export_presets.cfg
+*.spp
