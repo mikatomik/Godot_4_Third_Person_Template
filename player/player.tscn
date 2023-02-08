@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bx2b1uj0eye41"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_5i7gn"]
+[ext_resource type="Script" path="res://player/camera_pivot.gd" id="2_lehn0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xgsf6"]
+height = 1.8
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rj1pp"]
+height = 1.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_vhvn5"]
+size = Vector3(0.1, 0.1, 0.5)
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_5i7gn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_xgsf6")
+
+[node name="body_rig" type="Node3D" parent="."]
+
+[node name="body" type="MeshInstance3D" parent="body_rig"]
+mesh = SubResource("CapsuleMesh_rj1pp")
+
+[node name="pointer" type="MeshInstance3D" parent="body_rig/body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.578538, -0.610693)
+mesh = SubResource("BoxMesh_vhvn5")
+
+[node name="camera_pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.430608, 0)
+script = ExtResource("2_lehn0")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="camera_pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
+spring_length = 5.0
+margin = 0.1
+
+[node name="Camera3D" type="Camera3D" parent="camera_pivot/SpringArm3D"]
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48825, 0)
+billboard = 1
